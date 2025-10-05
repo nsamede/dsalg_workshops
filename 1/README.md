@@ -14,7 +14,7 @@ a Stack or a Queue.
 - GNU C Compiler[^1] 
 - GNU Make [^2]
 > [!TIP]
-> If you'd like to use a different C compiler, edit the `CC` variable in the [Makefile](1/Makefile). \
+> If you'd like to use a different C compiler, edit the `CC` variable in the [Makefile](Makefile). \
 > For example: `CC=clang`
 [^1]: This code has been tested with GCC version 14.3.0, however older versions will likely work.
 [^2]: This code has been tested with Make version 4.4.1, however older versions will likely work.
