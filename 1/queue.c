@@ -1,19 +1,11 @@
+#include "queue.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #define INITIAL_CAPACITY 5
 #define CAPACITY_INCREMENT 3
-
-typedef struct {
-    void* data;
-} QueueElement;
-
-typedef struct {
-    QueueElement *buffer;    // Where the data is stored.
-    int           length;    // The number of items in the queue.
-    size_t        capacity;  // The maximum number of items in the queue.
-} Queue;
 
 Queue create_queue() {
     return (Queue) {
@@ -23,9 +15,8 @@ Queue create_queue() {
     };
 }
 
-// Adds an element to the tail of the queue.
 void enqueue(Queue *queue, void* data) {
-    // If the queue is empty, we need to allocate the initial buffer
+    // If the queue is empty, we need to allocate the initial buffer.
     if (queue->length == 0) {
         queue->buffer = (QueueElement*) malloc(sizeof(QueueElement) * queue->capacity);
         if (!queue->buffer) {
@@ -48,7 +39,10 @@ void enqueue(Queue *queue, void* data) {
             return;
         }
 
-        free(queue->buffer);
+        // If realloc() gave us a new buffer, we must free the old one.
+        if (new_buffer != queue->buffer) {
+            free(queue->buffer);
+        }
         queue->capacity += CAPACITY_INCREMENT;
     }
     
@@ -90,31 +84,3 @@ void destroy_queue(Queue *queue) {
     *queue = create_queue();
 }
 
-int main() {
-    Queue queue = create_queue();
-
-    int val1 = 10;
-    int val2 = 20;
-    char val3[] = "hello world!";
-    int val4 = 40;
-    int val5 = 50;
-    int val6 = 60;
-
-    enqueue(&queue, &val1);
-    enqueue(&queue, &val2);
-    enqueue(&queue, &val3);
-    enqueue(&queue, &val4);
-    enqueue(&queue, &val5);
-    enqueue(&queue, &val6);
-    printf("head: %d\n", *(int*) peek(&queue));
-    printf("length: %d\n", queue.length);
-
-    dequeue(&queue);
-    dequeue(&queue);
-    printf("head: %s\n", (char*) peek(&queue));
-    printf("length: %d\n", queue.length);
-
-    destroy_queue(&queue);
-
-    return 0;
-}
