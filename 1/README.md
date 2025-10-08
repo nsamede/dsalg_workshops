@@ -3,9 +3,11 @@
 My solutions to the programming exercises from worksheet 1.
 1. [x] Implement a Queue using an Array/List.  
 2. [x] Implement a Stack using an Array/List.
-3. [ ] Design an algorithm to reverse a Queue using Stacks and Queues.
+3. [x] Design an algorithm to reverse a Queue using Stacks and Queues.
 4. [ ] (Advanced) Implement a Circular Queue using an Array or List.
-5. [ ] Develop an algorithm to determine if the brackets in a string are valid, using
+5. [ ] Design an algorithm to continuously remove adjacent duplicate letters from a string
+until no duplicates remain, using a Stack or a Queue. Can you also implement this using the alternative ADT?
+6. [ ] Develop an algorithm to determine if the brackets in a string are valid, using
 a Stack or a Queue.
 
 ## Building and Running
@@ -21,7 +23,7 @@ a Stack or a Queue.
 
 ### Steps
 
-```
+```bash
 cd dsalg_workshops/1
 mkdir bin 			# Where Make will output binaries
 make [target]		# Targets and their descriptions are listed below
