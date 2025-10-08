@@ -5,26 +5,44 @@
 int main() {
     Queue queue = create_queue();
 
-    int val1 = 10;
-    int val2 = 20;
-    char val3[] = "hello world!";
-    int val4 = 40;
-    int val5 = 50;
-    int val6 = 60;
+    int values[6] = {1, 2, 3, 4, 5, 6};
 
-    enqueue(&queue, &val1);
-    enqueue(&queue, &val2);
-    enqueue(&queue, &val3);
-    enqueue(&queue, &val4);
-    enqueue(&queue, &val5);
-    enqueue(&queue, &val6);
-    printf("head: %d\n", *(int*) peek(&queue));
-    printf("length: %d\n", length(&queue));
+    for (int i = 0; i < 6; i++) {
+        enqueue(&queue, &values[i]);
+    }
 
+    printf("after enqueue:\n");
+    printf("\thead: %d\n", *(int*) peek(&queue));
+    printf("\tlength: %d\n", length(&queue));
+
+    printf("\tvalues: { ");
+    for (int i = 0; i < 6; i++) {
+        printf("%d, ", *(int*) queue.buffer[i].data);
+    }
+    printf("}\n");
+
+    printf("after dequeue (twice):\n");
     dequeue(&queue);
     dequeue(&queue);
-    printf("head: %s\n", (char*) peek(&queue));
-    printf("length: %d\n", length(&queue));
+    printf("\thead: %d\n", *(int*) peek(&queue));
+    printf("\tlength: %d\n", length(&queue));
+
+    printf("\tvalues: { ");
+    for (int i = 0; i < length(&queue); i++) {
+        printf("%d, ", *(int*) queue.buffer[i].data);
+    }
+    printf("}\n");
+
+    reverse_queue(&queue);
+    printf("after reverse:\n");
+    printf("\thead: %d\n", *(int*) peek(&queue));
+    printf("\tlength: %d\n", length(&queue));
+
+    printf("\tvalues: { ");
+    for (int i = 0; i < length(&queue); i++) {
+        printf("%d, ", *(int*) queue.buffer[i].data);
+    }
+    printf("}\n");
 
     destroy_queue(&queue);
 

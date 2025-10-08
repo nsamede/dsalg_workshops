@@ -4,9 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define INITIAL_CAPACITY 5
-#define CAPACITY_INCREMENT 3
-
 Queue create_queue() {
     return (Queue) {
         .buffer = NULL,
@@ -74,6 +71,18 @@ void* peek(Queue *queue) {
 
 int length(Queue *queue) {
     return queue->length;
+}
+
+void reverse_queue(Queue *queue) {
+    int queue_length = length(queue);
+    // Looping until queue_length / 2 prevents duplicate swaps.
+    for (int i = 0; i < queue_length / 2; i++) {
+        int remaining = queue_length - 1 - i;
+
+        void *temp = queue->buffer[i].data;
+        queue->buffer[i].data = queue->buffer[remaining].data;
+        queue->buffer[remaining].data = temp;
+    }
 }
 
 void destroy_queue(Queue *queue) {

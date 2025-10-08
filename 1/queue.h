@@ -39,6 +39,9 @@ void* peek(Queue *queue);
 // Returns the length of the queue.
 int length(Queue *queue);
 
+// Reverses the queue. E.g. [1, 2, 3] becomes [3, 2, 1].
+void reverse_queue(Queue *queue);
+
 // De-allocates the queue's internal buffer and re-initialises the queue.
 void destroy_queue(Queue *queue);
 

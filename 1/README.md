@@ -29,5 +29,5 @@ make [target]		# Targets and their descriptions are listed below
 ```
 __Make Targets:__
 - all - Builds all targets.
-- test_stack - Builds test for the stack implementation (exercise 1).
-- test_queue - Builds test for the queue implementation (exercise 2).
+- test_stack - Builds test for the stack implementation (exercise 1, 3).
+- test_queue - Builds test for the queue implementation (exercise 2, 3).
